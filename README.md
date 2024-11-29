@@ -5,6 +5,8 @@ Here's a possible version of the text for users:
 
 Please note: All the code and documentation were written by ChatGPT, so you might come across some of its "hallucinations." I did not meticulously check the documentation. I fed all my code into ChatGPT, and it wrote the docs by itself. I am sure that some parts are poorly written, but what matters is that the code works on my computer, and I can easily manage GoPro Hero 10 cameras synchronously in my scanner rig. As you go further, just keep in mind: ChatGPT-written docs aren't great, but they exist. :) 
 
+Main files Gopro_Gui_interfase_Pyqt5.py and status_of_cameras_GUI.py
+
 
 # Shramko GoPro Control App
 
