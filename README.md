@@ -8,7 +8,7 @@ Please note: All the code and documentation were written by ChatGPT, so you migh
 
 # Shramko GoPro Control App
 
-**Shramko GoPro Control App** is a powerful software solution designed for synchronizing and managing multiple GoPro Hero 10 cameras via USB. The application is capable of controlling up to 100 cameras, allowing users to start/stop recording, adjust settings, synchronize time, and download files, all from a central interface.
+**Shramko GoPro Control App** is a powerful software solution designed for synchronizing and managing multiple GoPro Hero 10-11-12-13... cameras via USB. The application is capable of controlling up to 1000 cameras, allowing users to start/stop recording, adjust settings, synchronize time, and download files, all from a central interface.
 
 This tool is perfect for projects that require multi-camera setups, such as **virtual studios**, **advertising shoots**, **music videos**, or **film productions**. With a focus on efficiency, it simplifies the management of large GoPro arrays, allowing studios and production teams to capture synchronized footage with ease.
 
