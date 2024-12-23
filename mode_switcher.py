@@ -13,7 +13,7 @@ import aiohttp
 import logging
 import threading
 from utils import setup_logging, get_data_dir
-from goprolist_and_start_usb import discover_gopro_devices
+from goprolist_and_start_usb import discover_gopro_devices, reset_and_enable_usb_control
 
 logger = setup_logging(__name__)
 
@@ -45,6 +45,12 @@ class ModeSwitcher(QWidget):
                 logger.warning("No GoPro devices found")
             else:
                 logger.info(f"Found {len(self.devices)} GoPro devices")
+                # Активируем USB для каждой найденной камеры
+                for device in self.devices:
+                    try:
+                        reset_and_enable_usb_control(device['ip'])
+                    except Exception as e:
+                        logger.error(f"Failed to enable USB for camera {device['name']}: {e}")
         except Exception as e:
             logger.error(f"Error discovering devices: {e}")
             self.devices = []
@@ -134,6 +140,9 @@ class ModeSwitcher(QWidget):
 
     async def _apply_mode_async(self, devices, mode):
         try:
+            # Даем время на инициализацию USB
+            await asyncio.sleep(1)
+            
             async with aiohttp.ClientSession() as session:
                 tasks = []
                 for device in devices:
@@ -168,15 +177,15 @@ class ModeSwitcher(QWidget):
     async def set_mode_for_camera(self, session, url, device, mode):
         try:
             async with session.get(url, timeout=2) as response:
-                if response.status_code != 200:
-                    logger.error(f"Failed to set {mode} mode for camera {device['name']}. Status: {response.status_code}")
+                if response.status != 200:
+                    logger.error(f"Failed to set {mode} mode for camera {device['name']}. Status: {response.status}")
                     return False
                     
             await asyncio.sleep(0.5)  # Уменьшаем задержку
             
             status_url = f"http://{device['ip']}:8080/gp/gpControl/status"
             async with session.get(status_url, timeout=2) as status_response:
-                if status_response.status_code == 200:
+                if status_response.status == 200:
                     status_data = await status_response.json()
                     current_mode = status_data.get('status', {}).get('43')
                     expected_mode = {'video': 0, 'photo': 1, 'timelapse': 13}[mode]
