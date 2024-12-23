@@ -1,0 +1,6 @@
+2024-12-23 01:54:38,688 - __main__ - INFO - Loaded cached camera devices:
+2024-12-23 01:54:38,688 - __main__ - INFO - Name: C3461325908060, IP: 172.20.160.51
+2024-12-23 01:54:38,688 - __main__ - INFO - Name: C3461326043977, IP: 172.29.177.51
+2024-12-23 01:54:38,688 - __main__ - INFO - Turning off all cameras...
+2024-12-23 01:54:38,746 - __main__ - INFO - Camera 172.20.160.51 turned off successfully.
+2024-12-23 01:54:38,767 - __main__ - INFO - Camera 172.29.177.51 turned off successfully.
